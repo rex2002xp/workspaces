@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  node:
+    # imagen base
+    image: devcontainer/node:22.14.0-ubuntu-dev
+    
+    # Mantener el contenedor corriendo
+    tty: true
+    
+    # Configuración de red - expone los puertos para desarrollo
+    ports:
+      - "3000:3000"  # Para aplicaciones Express/Node.js
+      - "8080:8080"  # Para Next.js
+      - "9229:9229"  # Para Node.js debugger
+    
+    # Monta volúmenes para persistencia de datos
+    volumes:
+      # Monta el código fuente en /app
+      - ../node-workspace:/node-workspace
+      # Monta las llaves SSH para acceso a Git
+      - ../.ssh:/home/devuser/.ssh:ro
+      # - ../.ssh:/home/devuser/.ssh
+      # Monta la configuración de Git
+      - ~/.gitconfig:/home/devuser/.gitconfig:ro
+    
+    # Variables de entorno
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    
+    # Configuración adicional para el usuario
+    user: devuser
+    
+    # Opcional: configuración de seguridad mejorada
+    security_opt:
+      - no-new-privileges:true

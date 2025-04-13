@@ -1,0 +1,51 @@
+{
+    "name": "Node.js Development Environment",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "node",
+    "workspaceFolder": "/node-workspace",
+    
+    // Configuración para VS Code
+    "customizations": {
+      "vscode": {
+        // Extensiones recomendadas para desarrollo en Node.js
+        "extensions": [
+          "dbaeumer.vscode-eslint",           // ESLint para análisis de código
+          "esbenp.prettier-vscode",           // Prettier para formateo de código
+          "ms-vscode.vscode-typescript-next", // Soporte mejorado para TypeScript
+          "christian-kohler.npm-intellisense", // Autocompletado para npm
+          "christian-kohler.path-intellisense", // Autocompletado para rutas
+          "streetsidesoftware.code-spell-checker", // Corrector ortográfico
+          "ritwickdey.liveserver",            // Servidor en vivo para pruebas
+          "formulahendry.auto-rename-tag",    // Renombrado automático de etiquetas HTML
+          "ziyasal.vscode-open-in-github"     // Abrir en GitHub
+        ],
+        "settings": {
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true
+          },
+          "terminal.integrated.defaultProfile.linux": "bash",
+          "typescript.tsdk": "node_modules/typescript/lib",
+          "editor.tabSize": 2
+        }
+      }
+    },
+  
+    // Configuración del contenedor
+    "remoteUser": "devuser",
+    "updateRemoteUserUID": true,
+    
+    // Comandos a ejecutar después de crear el contenedor
+    // "postCreateCommand": "npm install",
+  
+    // Características adicionales para el contenedor
+    "features": {
+      "git": "latest",
+      "github-cli": "latest"
+    },
+    
+    // Variables de entorno para el desarrollo
+    "remoteEnv": {
+      "NODE_ENV": "development"
+    }
+  }

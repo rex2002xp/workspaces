@@ -63,10 +63,10 @@ RUN npm install -g yarn \
     && yarn --version
 
 # Configura el directorio de trabajo para la aplicación
-WORKDIR /app
+WORKDIR /node-workspace
 
 # Cambia la propiedad del directorio de trabajo al usuario no privilegiado
-RUN chown -R ${USER_NAME}:${GROUP_NAME} /app
+RUN chown -R ${USER_NAME}:${GROUP_NAME} /node-workspace
 
 # Cambia al usuario no privilegiado para operaciones seguras
 USER ${USER_NAME}
